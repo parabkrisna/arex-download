@@ -14,8 +14,8 @@ library(xlsx)
 # Base URL
 base_url <- "https://www.ebi.ac.uk/biostudies/api/v1/search?"
 data_df<-data.frame()
-# parameters
-facet_organism <- "&facet.organism=homo+sapiens"
+# parameters used in query builder
+facet_organism <- "&facet.organism=homo+sapiens" #query builder
 query <- "&query=obesity"
 num_pages <- 13  # Set the number of pages to iter
 
@@ -35,15 +35,15 @@ View(data_df)
 #binding to a 2D dataframe
 array_accession_data<-as.data.frame(data_df)
 View(array_accession_data)
-# Geo accession document
-obesity_geo_curation_19may2023_originaldoc_ <- read_excel("R:/backup/Downloads/obesity_geo_curation_19may2023(originaldoc).xlsx", 
-                                                          sheet = "Series_all")
-GEO_accession_data<-as.data.frame(obesity_geo_curation_19may2023_originaldoc_)
+# Geo accession document, with existing studies collected beforehand from GEO database, to cross check common and uncommon entries
+file_existing <- read_excel("C:/file_existing_studies.xlsx", 
+                                                          sheet = "xxx")
+GEO_accession_data<-as.data.frame(file_existing)
 View(GEO_accession_data)
 # Load libraries
 library(readxl)
 
-# Identify mtab vs geod
+# Identify mtab vs geod, mtab is arrayexpress identifier, geod is GEO identifier
 categorize_id <- function(identify) {
   identify <- as.character(identify)
   geo_id <- "E-GEOD"
