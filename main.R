@@ -18,7 +18,7 @@ bin_list = list()
 
 #setup parallel backend to use many processors
 cores=detectCores()
-cl <- makeCluster(cores[1]-1) #not to overload your computer
+cl <- makeCluster(cores[1]-1) 
 registerDoParallel(cl)
 
 foreach (set in arex_sets$accession) {
@@ -26,7 +26,7 @@ foreach (set in arex_sets$accession) {
   # invisible(getAE(accession, path = getwd(), type = "full",
   #                 extract = FALSE, sourcedir = path, overwrite = FALSE))
   cat('Files downloaded for accession ID:',accession, "\n")
-  base_loc  <- "C:/Users/bioinfo/Documents/"
+  base_loc  <- "C:/"
   format    <- ".sdrf.txt"
   url       <- paste0(base_loc, accession, format)
   sdrf_file <- url
@@ -50,20 +50,3 @@ View(bin_data)
 #save to csv
 write.csv(big_data, "arex_sample.csv", row.names = FALSE)
 write.xlsx(bin_data, "arex_sample.xlsx", row.names = FALSE)
-
-# library(foreach)
-# library(doParallel)
-# 
-# #setup parallel backend to use many processors
-# cores=detectCores()
-# cl <- makeCluster(cores[1]-1) #not to overload your computer
-# registerDoParallel(cl)
-# 
-# finalMatrix <- foreach(i=1:150000, .combine=cbind) %dopar% {
-#   tempMatrix = functionThatDoesSomething() #calling a function
-#   #do other things if you want
-#   
-#   tempMatrix #Equivalent to finalMatrix = cbind(finalMatrix, tempMatrix)
-# }
-# #stop cluster
-# stopCluster(cl)
