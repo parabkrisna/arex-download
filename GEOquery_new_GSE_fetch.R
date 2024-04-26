@@ -1,6 +1,6 @@
 
 library(readxl)
-misc <- read.delim("C:/Users/bioinfo/Downloads/gse.csv")
+misc <- read.delim("file_existing")
 misc <- data.frame(misc)
 #View(misc)
 
@@ -18,15 +18,15 @@ library(openxlsx)
 
 gse_list <- misc$gse_id  # Example list of GSEIDs
 
-#setwd("C:/Users/krisna/Documents")
+#setwd()
 
 new_accession<-as.data.frame(gse_list)
-#View(new_accession)
+#View(new_accession)  
 
 # Geo accession document
-obesity_geo_curation_19may2023_originaldoc_ <- read_excel("C:/Users/bioinfo/Desktop/obesity_geo_curation_19may2023(originaldoc).xlsx", 
-                                                          sheet = "Series_all")
-GEO_accession_data<-as.data.frame(obesity_geo_curation_19may2023_originaldoc_)
+file_existing_data <- read_excel("C:/x.xlsx", 
+                                                          sheet = "x")
+GEO_accession_data<-as.data.frame(file_existing_data)
 #View(GEO_accession_data)
 
 # Common data
