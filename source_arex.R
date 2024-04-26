@@ -27,19 +27,18 @@ if (!requireNamespace("GenomeInfoDbData", quietly = TRUE)) {
 }
 library("GenomeInfoDbData")
 
-sets = queryAE(keywords = "obesity", species = "homo+sapiens")
+sets = queryAE(keywords = "obesity", species = "homo+sapiens") #query ArrayExpress database
 
 array_accession_data<-as.data.frame(sets)
 View(array_accession_data)
 # Geo accession document
-obesity_geo_curation_19may2023_originaldoc_ <- read_excel("C:/R_data/obesity_geo_curation_19may2023(originaldoc).xlsx ", 
-                                                          sheet = "Series_all") ### change path to GEO data
-GEO_accession_data<-as.data.frame(obesity_geo_curation_19may2023_originaldoc_)
+file_existing <- read_excel("C:/file_existing.xlsx ", sheet = "xxx") ### change path to GEO data
+GEO_accession_data<-as.data.frame(file_existing)
 View(GEO_accession_data)
 # Load libraries
 library(readxl)
 
-# Identify mtab vs geod
+# Identify mtab vs geod, mtab is ArrayExpress express identifier, geod is GEO data base identifier
 categorize_id <- function(identify) {
   identify <- as.character(identify)
   geo_id <- "E-GEOD"
